@@ -1,23 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+
+const title = React.createElement('h1', {class: "xxx"}, 'Примеры работ курса.');
+const subTitle = React.createElement('h2', {class: "xxx"}, 'Откоментируйте нужную строку с элементом.');
+function App() {   
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div>{title}{subTitle}</div>
     </div>
   );
 }
