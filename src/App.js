@@ -1,6 +1,7 @@
 import React from "react";
 
-import ReactLogo from  "./lessons/1-jsx-to-hyperscript/close.svg"
+import Lesson1 from "./lessons/1-jsx-to-hyperscript/Lesson1";
+import Lesson2 from "./lessons/2-hyperscript-to-jsx/Lesson2";
 
 const title = React.createElement(
   "h1",
@@ -18,7 +19,9 @@ function App() {
       <div>
         {title}
         {subTitle}
-        <img src={ReactLogo} alt="React Logo" />
+        
+        <Lesson1/>
+        <Lesson2/>
       </div>
     </div>
   );
