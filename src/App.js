@@ -5,12 +5,12 @@ import Lesson2 from "./lessons/2-hyperscript-to-jsx/Lesson2";
 
 const title = React.createElement(
   "h1",
-  { class: "xxx" },
+  { class: "xxx", style:{color: '#4d2600'} },
   "Примеры работ курса."
 );
 const subTitle = React.createElement(
   "h2",
-  { class: "xxx" },
+  { class: "xxx", style:{color: '#4d2600'} },
   "Откоментируйте нужную строку с элементом."
 );
 function App() {

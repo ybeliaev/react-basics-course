@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components'
+import "./style.css"
 
 import ReactLogo from  "./close.svg"
 
@@ -8,8 +9,7 @@ const AlertStyled = styled.div`
     position: relative;
     color: #155724;
     background-color: #d4edda;
-    border-color: #c3e6cb;    
-    margin-bottom: 1rem;
+    border-color: #c3e6cb;     
     padding-left: 20px;
     border: 1px solid transparent;
     border-radius: .25rem;
@@ -41,10 +41,12 @@ let jsx = <>
 </>
 
 // HyperScript
-let hs = React.createElement("div", {}, [
-  React.createElement("pre", {}, [
+let hs = React.createElement("div", {className: "lesson-1 div"}, [
+  React.createElement("pre", {className: "pre"}, [
     React.createElement("code", {}, ["Modify index.js"]),
-    React.createElement("span", {}, [])
+    React.createElement("button", {className: "btn"}, [
+        React.createElement("span", {dangerouslySetInnerHTML: {__html: "&times;"}, className: "span"})
+      ]),
   ]),
 ])
 
