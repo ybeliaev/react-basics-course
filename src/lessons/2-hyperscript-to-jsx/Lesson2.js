@@ -1,6 +1,3 @@
-import React from 'react';
-
-import ReactLogo from  "./close.svg"
 // JSX
 let jsx = <div>
   <pre>
@@ -24,3 +21,4 @@ export default function Lesson2() {
     <div>{hs}</div>
   </div>
 }
+
