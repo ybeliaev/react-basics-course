@@ -9,7 +9,7 @@ const title = React.createElement(
   "Примеры работ курса."
 );
 const subTitle = React.createElement(
-  "h2",
+  "h3",
   { class: "xxx", style:{color: '#4d2600'} },
   "Откоментируйте нужную строку с элементом."
 );
