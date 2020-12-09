@@ -51,7 +51,8 @@ let hs = React.createElement("div", {className: "lesson-1 div"}, [
 ])
 
 export default function Lesson1() {
-  return <div>
+  return <div className="wrapper_lesson">
+    <h3>Урок 1</h3>
     <h4>JSX Alert (toDo)</h4>
     <AlertStyled>{jsx}</AlertStyled>    
     <h4>HyperScript Alert (toDo)</h4>
