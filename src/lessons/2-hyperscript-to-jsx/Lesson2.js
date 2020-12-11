@@ -70,6 +70,20 @@ let hs = React.createElement("div", {}, [
   ]),
 ])
 
+// Вариант Клешнина
+// HyperScript
+// let li = (attrs, children ) => React.createElement("li", attrs, children)
+// let a = (attrs, children) => React.createElement("a", attrs, children)
+// // let div = ... etc
+// // ^ the spoiler of how H.S. can be made more comfortable
+
+// let hs = React.createElement("nav", {}, [
+//   React.createElement("ol", {className: "breadcrumb"}, [
+//     li({className: "breadcrumb-item"}, [a({href: "#home"}, "Home")]),
+//     li({className: "breadcrumb-item"}, [a({href: "#library"}, "Library")]),
+//     li({className: "breadcrumb-item active"}, "Data"),
+//   ])
+// ])
 export default function Lesson2() {
   return <div className="wrapper_lesson">
     <h3>Урок 2</h3>
@@ -81,10 +95,3 @@ export default function Lesson2() {
   </div>
 }
 
-<nav>
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#home">Home</a></li>
-    <li class="breadcrumb-item"><a href="#library">Library</a></li>
-    <li class="breadcrumb-item active">Data</li>
-  </ol>
-</nav>
