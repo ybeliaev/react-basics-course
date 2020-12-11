@@ -31,8 +31,10 @@ let A = styled.a`
       color: #01447e;
       text-decoration: underline;
     }
-    
+    /* не знаю как реализовать &:last-child:hover */
 `
+
+// *******************JSX************************
 let jsx = <div>
   <nav>
     <Ol class="breadcrumb">
@@ -50,10 +52,21 @@ let jsx = <div>
   </nav>
 </div>
 
-// HyperScript
+// *******************HyperScript************************
+let LiHyperScript = items.map((item, idx) => {
+  const {name, href} = item; 
+  if(idx == items.length - 1){
+       return <Li key={idx}>{name}</Li>
+  }else{
+    return(          
+    <Li key={idx}><A href={href}>{name}</A></Li>
+    )
+  }     
+})
+
 let hs = React.createElement("div", {}, [
-  React.createElement("pre", {}, [
-    React.createElement("code", {}, ["Modify index.js"]),
+  React.createElement("nav", {}, [
+    React.createElement(Ol, {}, [LiHyperScript]),
   ]),
 ])
 
