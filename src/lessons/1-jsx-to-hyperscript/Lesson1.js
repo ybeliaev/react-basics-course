@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components'
 import "./style.css"
 
-import ReactLogo from  "./close.svg"
+// import ReactLogo from  "./close.svg"
 
 const AlertStyled = styled.div`
     position: relative;
