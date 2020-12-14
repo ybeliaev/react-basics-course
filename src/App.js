@@ -3,6 +3,7 @@ import React from "react";
 import Lesson1 from "./lessons/1-jsx-to-hyperscript/Lesson1";
 import Lesson2 from "./lessons/2-hyperscript-to-jsx/Lesson2";
 import Lesson3 from "./lessons/3-progress-bar/Lesson3";
+import Lesson4 from "./lessons/4-common-card/Lesson4";
 
 const title = React.createElement(
   "h1",
@@ -19,6 +20,7 @@ function App() {
         <Lesson1/>
         <Lesson2/>
         <Lesson3/>
+        <Lesson4/>
       </div>
     </div>
   );

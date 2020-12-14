@@ -1,8 +1,33 @@
+import React from 'react';
+
+import styled from "styled-components"
+import PropTypes from 'prop-types';
+
+const ArrayCards = [
+    { 
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg",
+        cardTitle: "Card title 1",
+        cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+    },
+    {
+        src:"",
+        cardTitle: "Card title 2",
+        cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+    },
+    {
+        src:"",
+        cardTitle: "Card title 3",
+        cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+    },
+]
+const Container = styled.div`
+    padding: 1rem;
+
+`
+
 function Card(props) {
     // toDO
-    return <pre>
-      <code>{JSON.stringify(props)}</code>
-    </pre>
+    return props.children
   }
   
   Card.propTypes = {
@@ -10,8 +35,7 @@ function Card(props) {
   }
   
 export default  function Lesson4() {
-    return <div className="p-3">
-      <div className="card-columns">
+    return <div className="wrapper_lesson">
         <Card>
           <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg" alt="Card image cap"/>
           <div className="card-body">
@@ -41,6 +65,6 @@ export default  function Lesson4() {
           </div>
         </Card>
       </div>
-    </div>
+    
   }  
   
