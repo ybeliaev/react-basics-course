@@ -8,20 +8,30 @@ const ArrayCards = [
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg",
         cardTitle: "Card title 1",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        featured: false,
+        salesEnds: false,
+        bestDeal: false,
     },
     {
         src:"",
         cardTitle: "Card title 2",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        featured: false,
+        salesEnds: false,
+        bestDeal: false,
     },
     {
         src:"",
         cardTitle: "Card title 3",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        featured: false,
+        salesEnds: false,
+        bestDeal: false,
     },
 ]
 const Container = styled.div`
-    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
 
 `
 
@@ -36,6 +46,7 @@ function Card(props) {
   
 export default  function Lesson4() {
     return <div className="wrapper_lesson">
+    <Container>
         <Card>
           <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg" alt="Card image cap"/>
           <div className="card-body">
@@ -64,7 +75,8 @@ export default  function Lesson4() {
             <a href="#" className="btn btn-primary">Go somewhere</a>
           </div>
         </Card>
-      </div>
+    </Container>
+    </div>
     
   }  
   
