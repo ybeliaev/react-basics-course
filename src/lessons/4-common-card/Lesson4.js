@@ -5,38 +5,49 @@ import PropTypes from 'prop-types';
 
 const DataCards = [
     { 
+        id: 1,      
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg",
         cardTitle: "Card title 1",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        href: "#",
         featured: false,
         salesEnds: false,
         bestDeal: false,
     },
     {
+        id: 2,
         src:"",
         cardTitle: "Card title 2",
+        href: "#",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
-        featured: false,
-        salesEnds: false,
+        featured: true,
         bestDeal: false,
+        salesEnds: false,
     },
     {
+        id: 3,
         src:"",
         cardTitle: "Card title 3",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
+        href: "#",
         featured: false,
-        salesEnds: false,
-        bestDeal: false,
+        bestDeal: true,
+        salesEnds: true,
     },
 ]
-const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
 
+const CardWrapper = styled.div`
+    display: inline-block;
+    width: calc(33% - 1rem);
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    margin-right: 1rem;
+    vertical-align: top;
 `
 const CardHeader = styled.div` 
   padding: .75rem 1.25rem;
   margin-bottom: 0;
+  border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
   background-color: rgba(0,0,0,.03);
   border-bottom: 1px solid rgba(0,0,0,.125);
 `
@@ -65,10 +76,22 @@ const Button = styled.button`
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
 `
+const CardButton = styled(Button)`
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    text-decoration: none;
+    margin-top: auto;
+`
+const CardBody = styled.div`
+  
+  padding: .75rem 1.25rem;
+
+`
 const Badge = styled.span`
     display: inline-block;
     padding: .25em .4em;
-    font-size: 75%;
+    font-size: 1rem;
     font-weight: 700;
     line-height: 1;
     text-align: center;
@@ -90,48 +113,38 @@ const TextSecondary = styled.span`
   color: #6c757d;
 `
 
-function Card(props) {
-    // toDO
-    return props.children
-  }
+function Card({DataCards, children}) {
+ const elements = DataCards.map((item,idx)=>{
+   return (
+     <CardWrapper>
+       {item.src ? <Img src={item.src} /> : null}
+       {item.featured ? <CardHeader><BadgeFeatured>featured</BadgeFeatured></CardHeader> : null}
+       {item.bestDeal ? <CardHeader><BadgeWarning>Best Deal</BadgeWarning></CardHeader> : null}
+       <CardBody>
+        <h5 className="card-title">{item.cardTitle}</h5>
+        <CardText>{item.cardText}</CardText>
+        <CardButton as="a" href={item.href}>Go somewhere</CardButton>
+       </CardBody>
+       {item.salesEnds ? <CardHeader><TextSecondary></TextSecondary>sales ends on Dec 31 2020</CardHeader> : null}
+     </CardWrapper>
+   )
+ })
+    return <>
+      {elements}    
+    </>
+}
   
   Card.propTypes = {
-    // toDO
+    DataCards: PropTypes.array,
+    children: PropTypes.node.isRequired,
   }
   
-export default  function Lesson4() {
+const Lesson4 = () => {
     return <div className="wrapper_lesson">
-    <Container> 
-        <Card>
-          <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg" alt="Card image cap"/>
-          <div className="card-body">
-            <h5 className="card-title">Card title 1</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-              card's content.</p>
-            <a href="#">Go somewhere</a>
-          </div>
-        </Card>
-  
-        <Card header={<span className="badge badge-secondary">Featured</span>}>
-          <div>
-            <h5>Card title 2</h5>
-            <p>Some quick example text to build on the card title and make up the bulk of the
-              card's content.</p>
-            <a href="#">Go somewhere</a>
-          </div>
-        </Card>
-  
-        <Card header={<span className="badge badge-warning">Best Deal</span>}
-              footer={<span class="text-secondary">sales ends on Dec 31 2020</span>}>
-          <div>
-            <h5>Card title 3</h5>
-            <p>Some quick example text to build on the card title and make up the bulk of the
-              card's content.</p>
-            <a href="#">Go somewhere</a>
-          </div>
-        </Card>
-    </Container>
+        <h3>Урок 4</h3>
+        <h3>Card component</h3>
+        <Card DataCards={DataCards}/>    
     </div>
     
   }  
-  
+export default  Lesson4;
