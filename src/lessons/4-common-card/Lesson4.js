@@ -35,14 +35,18 @@ const DataCards = [
         salesEnds: true,
     },
 ]
+const CommonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`
 
-const CardWrapper = styled.div`
-    display: inline-block;
+const CardWrapper = styled.div`    
     width: calc(33% - 1rem);
     border: 1px solid rgba(0,0,0,.125);
     border-radius: .25rem;
     margin-right: 1rem;
-    vertical-align: top;
+    
 `
 const CardHeader = styled.div` 
   padding: .75rem 1.25rem;
@@ -111,6 +115,7 @@ const BadgeWarning = styled(Badge)`
 `
 const TextSecondary = styled.span`
   color: #6c757d;
+  font-size: 1.2rem;
 `
 
 function Card({DataCards, children}) {
@@ -125,7 +130,7 @@ function Card({DataCards, children}) {
         <CardText>{item.cardText}</CardText>
         <CardButton as="a" href={item.href}>Go somewhere</CardButton>
        </CardBody>
-       {item.salesEnds ? <CardHeader><TextSecondary></TextSecondary>sales ends on Dec 31 2020</CardHeader> : null}
+       {item.salesEnds ? <CardHeader><TextSecondary>sales ends on Dec 31 2020</TextSecondary></CardHeader> : null}
      </CardWrapper>
    )
  })
@@ -143,7 +148,9 @@ const Lesson4 = () => {
     return <div className="wrapper_lesson">
         <h3>Урок 4</h3>
         <h3>Card component</h3>
-        <Card DataCards={DataCards}/>    
+        <CommonContainer>
+          <Card DataCards={DataCards}/>    
+        </CommonContainer>
     </div>
     
   }  
