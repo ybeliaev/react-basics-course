@@ -4,6 +4,7 @@ import Lesson1 from "./lessons/1-jsx-to-hyperscript/Lesson1";
 import Lesson2 from "./lessons/2-hyperscript-to-jsx/Lesson2";
 import Lesson3 from "./lessons/3-progress-bar/Lesson3";
 import Lesson4 from "./lessons/4-common-card/Lesson4";
+import Lesson5Resource from "./lessons/5-pattert-slots/Lesson5Resource"
 import Lesson5 from "./lessons/5-pattert-slots/Lesson5"
 
 const title = React.createElement(
@@ -22,6 +23,7 @@ function App() {
         <Lesson2/>
         <Lesson3/>
         <Lesson4/>
+        <Lesson5Resource/>
         <Lesson5/>
       </div>
     </div>
