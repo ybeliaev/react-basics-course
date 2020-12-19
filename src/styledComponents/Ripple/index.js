@@ -1,3 +1,10 @@
+/*
+ * for container must have: overflow: hidden and position: relative
+ <Button>
+    Learn React
+    <Ripple duration={3000} color="yellow" />
+  </Button>
+ */
 export function Ripple({ duration = 850, color = "#ffffff" }) {
   const [rippleArray, setRippleArray] = React.useState([]);
 
@@ -17,11 +24,18 @@ export function Ripple({ duration = 850, color = "#ffffff" }) {
   }, [rippleArray.length, duration]);
 
   const addRipple = (event) => {
+    //Element.getBoundingClientRect() возвращает размер элемента и его позицию относительно viewport 
+    // rippleContainer = {x: 38.5, y: 192.1, width: 168.9, height: 33.2, top: 192.1…}
     const rippleContainer = event.currentTarget.getBoundingClientRect();
+    // *** Выбираем самую длинную сторону ***
+    // height width - реальные размеры элемента
     const size =
       rippleContainer.width > rippleContainer.height
         ? rippleContainer.width
         : rippleContainer.height;
+    // *** Координаты щелчка мыши ***
+    //MouseEvent.pageX - это свойство MouseEvent доступное только для чтения. Данное свойство возвращает значение равное горизонтальной координате, относительно всего(!) документа
+    //rippleContainer.left тоже что rippleContainer.x
     const x = event.pageX - rippleContainer.left - size / 2;
     const y = event.pageY - rippleContainer.top - size / 2;
 
