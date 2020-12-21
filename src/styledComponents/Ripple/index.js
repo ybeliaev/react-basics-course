@@ -1,3 +1,4 @@
+import React from 'react';
 /*
  * for container must have: overflow: hidden and position: relative
  <Button>
@@ -5,6 +6,9 @@
     <Ripple duration={3000} color="yellow" />
   </Button>
  */
+import { RippleContainer } from "./style";
+
+
 export function Ripple({ duration = 850, color = "#ffffff" }) {
   const [rippleArray, setRippleArray] = React.useState([]);
 
