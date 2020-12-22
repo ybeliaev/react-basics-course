@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, {useState} from 'react';
 import styled, {css} from 'styled-components';
 
 
@@ -22,14 +21,18 @@ let Link = styled.a`
     &:hover{
         background-color: #e6e6e6;
     }     
-    ${props =>
+    /* ${props =>
         props.active &&
         css`
             &&&{                
                 background-color: #007BFF;
                 color: #fff;
             }
-    `}
+    `} */
+    &.active{
+        background-color: #007BFF;
+        color: #fff;
+    }
 `
 
 
@@ -41,7 +44,7 @@ ListItems = ({children}) => {
 
 
 export default function Lesson5() {
-    
+    const [isActive, setActive] = useState(0);
     return (
         <div className="wrapper_lesson">
             <h3>Урок 5</h3>
@@ -49,10 +52,18 @@ export default function Lesson5() {
             <p style={{textAlign:"center", fontSize:"15px", color:"tomato"}}>Решение задачи</p>
             <ListItems>   
                  {
-                     arrayItem.map((item)=>{
-                        let el = <Link href="!#">{item}</Link>
+                    arrayItem.map((item, idx)=>{                        
+                        let el = <Link 
+                                    key={idx} 
+                                    className={isActive == idx ? "active" : ""}
+                                    href="!#"
+                                    onClick={(e) => {
+                                        e.preventDefault();                                        
+                                        setActive(idx);                                                                              
+                                    }}
+                                    >{item}</Link>
                         return el
-                     })
+                    })
                  }            
                                 
             </ListItems>
