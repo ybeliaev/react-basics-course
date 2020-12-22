@@ -1,34 +1,41 @@
 
 import React from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 
-const Ul = styled.ul`   
+let ListItems = styled.ul`   
     display: flex;
     flex-direction: column;
     list-style: none;
 `;
-const Link = styled.a`
-    position: relative;
-    overflow: "hidden";
-    text-decoration: none;
+let Link = styled.a`
+    position: relative;    
+    &&&{text-decoration: none; color: #222; font-size: 0.75em};
     display: block;
     padding: .75rem 1.25rem;
-    background-color: #fff;
+    background-color: #fff;    
     border: 1px solid rgba(0,0,0,.125);
     border-bottom: none;
-        :last-of-type {
-            border-bottom: 1px solid rgba(0,0,0,.125);
-        }
-        &:hover{
-            background-color: #e6e6e6;
-        }     
+    :last-of-type {
+        border-bottom: 1px solid rgba(0,0,0,.125);
+    }
+    &:hover{
+        background-color: #e6e6e6;
+    }     
+    ${props =>
+        props.active &&
+        css`
+            &&&{                
+                background-color: #007BFF;
+                color: #fff;
+            }
+    `}
 `
 
 
 let arrayItem = ["First Item", "Second Item", "Third Item", "Fourth Item", "Fifth Item"]
 
-let ListItem = ({children}) => {
+ListItems = ({children}) => {
     return children
 }
 
@@ -40,12 +47,15 @@ export default function Lesson5() {
             <h3>Урок 5</h3>
             <h3>Pattern "Slots"</h3>
             <p style={{textAlign:"center", fontSize:"15px", color:"tomato"}}>Решение задачи</p>
-            <Ul>                
-                <Link>0</Link>
-                <Link>1</Link>
-                <Link>2</Link>
-                <Link>3</Link>                
-            </Ul>
+            <ListItems>   
+                 {
+                     arrayItem.map((item)=>{
+                        let el = <Link href="!#">{item}</Link>
+                        return el
+                     })
+                 }            
+                                
+            </ListItems>
             
         </div>
     );
