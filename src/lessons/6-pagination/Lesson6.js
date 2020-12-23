@@ -10,9 +10,15 @@ let Link = styled.a`
     padding: .75rem 1.25rem;
     background-color: #fff;    
     border: 1px solid rgba(0,0,0,.125);
-    border-bottom: none;
+    border-right: none;
     :last-of-type {
-        border-bottom: 1px solid rgba(0,0,0,.125);
+        border-right: 1px solid rgba(0,0,0,.125);
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    :first-of-type {        
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
     }
     &:hover{
         background-color: #e6e6e6;
