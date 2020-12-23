@@ -33,25 +33,34 @@ let Link = styled.a`
 let ListItems = ({PagesArray, children}) => {
     return children
 }
-let PagesArray = ["Previous",1,2,3,4,5,6,7,8,9,10, "Next"]
+let pagesArray = [1,2,3,4,5,6,7,8,9,10]
+
 
 export default function Lesson6(){
     const [isActive, setActive] = useState(1);
+
+    let length = pagesArray.length
+    
+    let handlerClick = (e,idx) => {
+        e.preventDefault();                                        
+        setActive(idx);
+        let prev = idx >= 1 ? idx - 1 : null
+        let next = idx + 1 <= length - 1 ? idx + 1 : null
+        console.log('prev ', prev);
+        console.log('next ', next);
+    }
     return (
         <div className="wrapper_lesson">
             <h3>Урок 6</h3>
             <h4>Pagination</h4>
-            <ListItems PagesArray = {PagesArray}>
+            <ListItems pagesArray = {pagesArray}>
                 {
-                   PagesArray.map((item, idx) => {
+                   pagesArray.map((item, idx) => {
                        let el = <Link 
                                     key={idx} 
                                     href="!#"
                                     className={isActive == idx ? "active" : ""}
-                                    onClick={(e) => {
-                                        e.preventDefault();                                        
-                                        setActive(idx);                                                                              
-                                    }}
+                                    onClick={(e)=>handlerClick(e,idx)}
                                 >{item}</Link>
                        return el;
                    }) 
