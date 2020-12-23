@@ -30,8 +30,9 @@ let Link = styled.a`
             }
     `} */
     &.active{
-        background-color: #007BFF;
-        color: #fff;
+        background-color: #007BFF;        
+        color: #fff !important;
+            
     }
 `
 
