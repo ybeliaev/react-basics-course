@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PT from "prop-types";
 import styled, {css} from 'styled-components';
 
 
@@ -49,7 +50,7 @@ export default function Lesson5() {
     return (
         <div className="wrapper_lesson">
             <h3>Урок 5</h3>
-            <h3>Pattern "Slots"</h3>
+            <h4>Pattern "Slots"</h4>
             <p style={{textAlign:"center", fontSize:"15px", color:"tomato"}}>Решение задачи</p>
             <ListItems>   
                  {
@@ -73,4 +74,5 @@ export default function Lesson5() {
     );
 }
 
-
+arrayItem.propTypes = PT.array.isRequired;
+// isActive.propTypes = PT.number.isRequired;

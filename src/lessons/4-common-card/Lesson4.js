@@ -147,7 +147,7 @@ function Card({DataCards, children}) {
 const Lesson4 = () => {
     return <div className="wrapper_lesson">
         <h3>Урок 4</h3>
-        <h3>Card component</h3>
+        <h4>Card component</h4>
         <CommonContainer>
           <Card DataCards={DataCards}/>    
         </CommonContainer>

@@ -6,6 +6,7 @@ import Lesson3 from "./lessons/3-progress-bar/Lesson3";
 import Lesson4 from "./lessons/4-common-card/Lesson4";
 import Lesson5Resource from "./lessons/5-pattert-slots/Lesson5Resource"
 import Lesson5 from "./lessons/5-pattert-slots/Lesson5"
+import Lesson6 from "./lessons/6-pagination/Lesson6"
 
 const title = React.createElement(
   "h1",
@@ -25,6 +26,7 @@ function App() {
         <Lesson4/>
         <Lesson5Resource/>
         <Lesson5/>
+        <Lesson6/>
       </div>
     </div>
   );
