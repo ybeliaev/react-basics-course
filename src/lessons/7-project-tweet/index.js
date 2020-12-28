@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import PT from "prop-types";
 import styled, {css} from 'styled-components';
@@ -8,6 +8,7 @@ let Wrap = styled.div`
 `
 
 let Textarea = styled.textarea `
+    outline: none;
     width: 100%;
     height: 150px;
     padding: 12px 20px;
@@ -17,13 +18,15 @@ let Textarea = styled.textarea `
     background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
-    transition: border .15s ease-in-out;
+    transition: all .15s ease-in-out;
     &:focus{
-        border: 2px solid #007BFF;
+        border: 3px solid #007BFF; 
+        border-style: outset;        
     }
 `
 let Button = styled.button`
     display: inline-block;
+    outline: none;
     font-weight: 400;
     color: #fff;
     text-align: center;
@@ -41,6 +44,9 @@ let Button = styled.button`
       background-color: #007BFF;
       text-decoration: none;
     }
+    &:focus{
+        outline: none;
+    }
 
 `
 let Footer = styled.div`
@@ -51,20 +57,36 @@ let Footer = styled.div`
 `
 // Footer = ({children}) => children;
 // Button = ({children}) => children;
-
+// Как совместить выше и styled
 
 export default function Lesson7(){
-    
+    let [text, setText] = useState("");
+    const MAXLEHGTHSTRING = 140;
+    let handleClick = () => {
+        alert(text)
+        setText("")
+    }
+    let onChangeHandler = e => {
+        if(e.target.value.length <= MAXLEHGTHSTRING){
+            setText(e.target.value)
+        }
+    }
     return (
         <div className="wrapper_lesson">
             <h3>Урок 7</h3>
             <h4>Проект Tweet</h4>
             <p><strong>Tweet:</strong></p>
             <Wrap>
-                <Textarea cols="40" rows="4" placeholder="Input up to 140 characters..."></Textarea>
+                <Textarea 
+                    cols="40" 
+                    rows="4" 
+                    placeholder="Input up to 140 characters..."
+                    value={text}
+                    onChange={onChangeHandler}
+                    ></Textarea>
                 <Footer>
-                    <Button>Tweet</Button>
-                    <small style={{fontSize:"14px"}}>140</small>
+                    <Button onClick={handleClick}>Tweet</Button>
+                    <small style={{fontSize:"14px"}}>{MAXLEHGTHSTRING - text.length}</small>
                 </Footer>
             </Wrap>
         </div>    
