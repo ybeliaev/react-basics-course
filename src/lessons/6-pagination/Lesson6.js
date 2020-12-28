@@ -6,7 +6,8 @@ import styled, {css} from 'styled-components';
 
 let Link = styled.a`
     position: relative;    
-    &&&{text-decoration: none; color: #222; font-size: 0.75em};    
+    &&&{text-decoration: none; color: #222; font-size: 0.75em};  
+    cursor: pointer ;
     padding: .75rem 1.25rem;
     background-color: #fff;    
     border: 1px solid rgba(0,0,0,.125);
@@ -37,15 +38,16 @@ let pagesArray = [1,2,3,4,5,6,7,8,9,10]
 
 
 export default function Lesson6(){
-    const [isActive, setActive] = useState(1);
+    const [isActive, setActive] = useState(0);
 
-    let length = pagesArray.length
-    
+    let length = pagesArray.length;
+    let prev = [];
+    let next = []
     let handlerClick = (e,idx) => {
         e.preventDefault();                                        
         setActive(idx);
-        let prev = idx >= 1 ? idx - 1 : null
-        let next = idx + 1 <= length - 1 ? idx + 1 : null
+        prev = idx >= 1 ? idx - 1 : null
+        next = idx + 1 <= length - 1 ? idx + 1 : null
         console.log('prev ', prev);
         console.log('next ', next);
     }
@@ -54,6 +56,7 @@ export default function Lesson6(){
             <h3>Урок 6</h3>
             <h4>Pagination</h4>
             <ListItems pagesArray = {pagesArray}>
+                {prev && <Link>Previous</Link>}
                 {
                    pagesArray.map((item, idx) => {
                        let el = <Link 
@@ -65,8 +68,9 @@ export default function Lesson6(){
                        return el;
                    }) 
                 }
+                {next && <Link>Next</Link>}
             </ListItems>
         </div>    
     )
 }
-
+// не хотел использовать useEffect, но похоже, без него не сделаю - нет перерендера

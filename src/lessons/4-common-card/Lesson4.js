@@ -9,7 +9,7 @@ const DataCards = [
         src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg",
         cardTitle: "Card title 1",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
-        href: "#",
+        href: "!#",
         featured: false,
         salesEnds: false,
         bestDeal: false,
@@ -18,7 +18,7 @@ const DataCards = [
         id: 2,
         src:"",
         cardTitle: "Card title 2",
-        href: "#",
+        href: "!#",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
         featured: true,
         bestDeal: false,
@@ -29,7 +29,7 @@ const DataCards = [
         src:"",
         cardTitle: "Card title 3",
         cardText: "Some quick example text to build on the card title and make up the bulk of the cards content.",
-        href: "#",
+        href: "!#",
         featured: false,
         bestDeal: true,
         salesEnds: true,
@@ -77,7 +77,12 @@ const Button = styled.button`
     font-size: 1rem;
     line-height: 1.5;
     border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out;
+    &:hover{
+      color: #fff;
+      background-color: #0069d9;
+      text-decoration: none;
+    }
 
 `
 const CardButton = styled(Button)`
@@ -102,7 +107,7 @@ const Badge = styled.span`
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
 
 `
 const BadgeFeatured = styled(Badge)`
