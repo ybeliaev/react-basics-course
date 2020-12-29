@@ -34,8 +34,8 @@ let Link = styled.a`
 let ListItems = ({PagesArray, children}) => {
     return children
 }
-let pagesArray = [1,2,3,4,5,6,7,8,9,10]
 
+let pagesArray = [1,2,3,4,5,6,7,8,9,10]
 
 export default function Lesson6(){
     const [isActive, setActive] = useState(0);
