@@ -28,6 +28,13 @@ function tellBMI(bmi) {
         </label>
     </div>
   }
+  Slider.propTypes = {
+    min: PT.number.isRequired,
+    max: PT.number.isRequired,
+    value: PT.number.isRequired,
+    title: PT.string.isRequired,
+    onChange: PT.func.isRequired,
+  }
 
 export default function Lesson8(){
     let [height, setHeight] = useState(175)

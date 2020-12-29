@@ -9,6 +9,7 @@ import Lesson5 from "./lessons/5-pattert-slots/Lesson5"
 import Lesson6 from "./lessons/6-pagination/Lesson6"
 import Lesson7 from "./lessons/7-project-tweet";
 import Lesson8 from "./lessons/8-bmi-culculator"
+import Lesson9 from "./lessons/9-norm-weight-calulate"
 
 const title = React.createElement(
   "h1",
@@ -31,6 +32,7 @@ function App() {
         <Lesson6/>
         <Lesson7/>
         <Lesson8/>
+        <Lesson9/>
       </div>
     </div>
   );
