@@ -38,16 +38,17 @@ let ListItems = ({PagesArray, children}) => {
 let pagesArray = [1,2,3,4,5,6,7,8,9,10]
 
 export default function Lesson6(){
-    const [isActive, setActive] = useState(0);
+    let [isActive, setActive] = useState(1);
+    let [prev, setPrev] = useState([])
+    let [next, setNext] = useState([])
 
     let length = pagesArray.length;
-    let prev = [];
-    let next = []
+    
     let handlerClick = (e,idx) => {
         e.preventDefault();                                        
         setActive(idx);
-        prev = idx >= 1 ? idx - 1 : null
-        next = idx + 1 <= length - 1 ? idx + 1 : null
+        prev = idx >= 1 ? setPrev([]) : setPrev(null)
+        next = idx + 1 <= length - 1 ? setNext([]) : setNext(null)
         console.log('prev ', prev);
         console.log('next ', next);
     }
