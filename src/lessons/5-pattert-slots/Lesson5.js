@@ -4,12 +4,13 @@ import styled, {css} from 'styled-components';
 
 
 let ListItems = styled.ul`   
-    display: flex;
-    flex-direction: column;
+    display: flex;    
+    flex-direction: column;    
     list-style: none;
 `;
 let Link = styled.a`
-    position: relative;    
+    position: relative; 
+    width:350px ;
     &&&{text-decoration: none; color: #222; font-size: 0.75em};
     display: block;
     padding: .75rem 1.25rem;

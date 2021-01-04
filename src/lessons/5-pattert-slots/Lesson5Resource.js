@@ -7,44 +7,43 @@ export default function Lesson5Resource() {
       <h3>Урок 5</h3>
         <h3>Pattern "Slots"</h3>
         <p style={{textAlign:"center", fontSize:"15px", color:"tomato"}}>Исходники проекта</p>
-        <div className="p-3">
-    <div className="card-columns">
-      <Card>
-        <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg" alt="Card image cap"/>
-        <div className="card-body">
-          <h5 className="card-title">Card title 1</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
+          <div className="card-group p-3">
+          <Card>
+            <img className="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Road_and_nature_of_beautifull_Bangladesh_village.jpg/320px-Road_and_nature_of_beautifull_Bangladesh_village.jpg" alt="Card image cap"/>
+            <div className="card-body">
+              <h5 className="card-title">Card title 1</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a href="#" className="btn btn-primary">Go somewhere</a>
+            </div>
+          </Card>
+          <Card>
+            <Card.Header>
+              <span className="badge bg-secondary">Featured</span>
+            </Card.Header>
+            <div className="card-body">
+              <h5 className="card-title">Card title 2</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a href="#" className="btn btn-primary">Go somewhere</a>
+            </div>
+          </Card>
+          <Card>
+            <Card.Header>
+              <span className="badge bg-warning">Best Deal</span>
+            </Card.Header>
+            <div className="card-body">
+              <h5 className="card-title">Card title 3</h5>
+              <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+              <a href="#" className="btn btn-primary">Go somewhere</a>
+            </div>
+            <Card.Footer>
+              <span className="text-secondary">sales ends on Dec 31 2020</span>
+            </Card.Footer>
+          </Card>
         </div>
-      </Card>
-      <Card>
-        <Card.Header>
-          <span className="badge badge-secondary">Featured</span>
-        </Card.Header>
-        <div className="card-body">
-          <h5 className="card-title">Card title 2</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
-        </div>
-      </Card>
-      <Card>
-        <Card.Header>
-          <span className="badge badge-warning">Best Deal</span>
-        </Card.Header>
-        <div className="card-body">
-          <h5 className="card-title">Card title 3</h5>
-          <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
-            card's content.</p>
-          <a href="#" className="btn btn-primary">Go somewhere</a>
-        </div>
-        <Card.Footer>
-          <span className="text-secondary">sales ends on Dec 31 2020</span>
-        </Card.Footer>
-      </Card>
-    </div>
-  </div>
+      
     </div>
   }
   function Card({children}) {

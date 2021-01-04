@@ -54,7 +54,7 @@ export default function Lesson8(){
         <div className="mt-2">
             BMI: <strong>{bmi.toFixed(1)}</strong>
             {" "}
-            <span className={`badge badge-${bmiColor}`}>{bmiText}</span>
+            <span className={`badge bg-${bmiColor}`}>{bmiText}</span>
         </div>
     </div>
 }

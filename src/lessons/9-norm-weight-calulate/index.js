@@ -21,16 +21,18 @@ export default function Lesson9(){
     return <div className="wrapper_lesson">
     <h3>Урок 7</h3>
     <h4>BMI culculator</h4>
-    <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked/>
+    <div className="form-check form-check-inline">
+        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="men" checked/>
         <label className="form-check-label" htmlFor="flexRadioDefault1">
-            Default checked radio
+        <span>&#128104;</span>
         </label>
+        
+        
     </div>
-    <div className="form-check">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+    <div className="form-check form-check-inline">
+        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="women"/>
         <label className="form-check-label" htmlFor="flexRadioDefault2">
-            Default checked radio
+        <span>&#128105;</span>
         </label>
     </div>
     
