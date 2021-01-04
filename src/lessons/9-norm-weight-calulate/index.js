@@ -12,29 +12,33 @@ function result(weight, height){
     return 100 - (calculateIndex(height) * 100 / weight)
 }
 
-function FormInput({chacked, htmlFor}){
+function FormInput({checked, htmlFor}){
     return null
 }
 
 export default function Lesson9(){
+    let [gender, setGender] = useState("Male")    
+    
 
     return <div className="wrapper_lesson">
-    <h3>Урок 7</h3>
-    <h4>BMI culculator</h4>
-    <div className="form-check form-check-inline">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="men" checked/>
-        <label className="form-check-label" htmlFor="flexRadioDefault1">
-        <span>&#128104;</span>
-        </label>
-        
-        
-    </div>
-    <div className="form-check form-check-inline">
-        <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="women"/>
-        <label className="form-check-label" htmlFor="flexRadioDefault2">
-        <span>&#128105;</span>
-        </label>
-    </div>
-    
+        <h3>Урок 7</h3>
+        <h4>BMI culculator</h4>
+        <div onChange={e => setGender(e.target.value)}>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="Male" checked={gender === "Male"}/>
+                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                <span>&#128104;</span>
+                </label>               
+                
+            </div>
+            <div className="form-check form-check-inline">
+                <input className="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="Female" checked={gender === "Female"}/>
+                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                <span>&#128105;</span>
+                </label>
+            </div>
+            {gender}
+        </div>    
   </div>
 }
+// Warning: You provided a `checked` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultChecked`. Otherwise, set either `onChange` or `readOnly`.
