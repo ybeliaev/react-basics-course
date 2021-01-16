@@ -1,70 +1,20 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Input from "@material-ui/core/Input";
-
-const useStyles = makeStyles({
-  root: {
-    width: 250,
-  },
-  input: {
-    width: 42,
-  },
-});
-
-function InputSlider() {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(30);
-
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const handleInputChange = (event) => {
-    setValue(event.target.value === "" ? "" : Number(event.target.value));
-  };
-
-  const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 100) {
-      setValue(100);
-    }
-  };
-
+function Slider({ min, max, value, title, onChange }) {
   return (
-    <div className={classes.root}>
-      <Typography id="input-slider" gutterBottom>
-        Volume
-      </Typography>
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs>
-          <Slider
-            value={typeof value === "number" ? value : 0}
-            onChange={handleSliderChange}
-            aria-labelledby="input-slider"
-          />
-        </Grid>
-        <Grid item>
-          <Input
-            className={classes.input}
-            value={value}
-            margin="dense"
-            onChange={handleInputChange}
-            onBlur={handleBlur}
-            inputProps={{
-              step: 10,
-              min: 0,
-              max: 100,
-              type: "number",
-              "aria-labelledby": "input-slider",
-            }}
-          />
-        </Grid>
-      </Grid>
+    <div className="col-sm-5">
+      <label className="form-label d-flex align-items-center">
+        <span>{title}</span>
+        <input
+          className="form-range mx-2"
+          type="range"
+          min={min}
+          max={max}
+          value={value}
+          onChange={(e) => onChange(parseInt(e.target.value))}
+        />
+        <span>{1000}</span>
+      </label>
     </div>
   );
 }
@@ -74,7 +24,7 @@ export default function Lesson10() {
     <div className="wrapper_lesson">
       <h3>Урок 10</h3>
       <h4>Проект RGB-sliders</h4>
-      <InputSlider />
+      <Slider min={0} max={255} title={"R"} />
     </div>
   );
 }
