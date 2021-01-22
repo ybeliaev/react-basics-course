@@ -1,37 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import TodoItem from "./TodoItem";
+import Footer from "./Footer";
+
+const FILTER_ALL = 0;
+const FILTER_DONE = 1;
+const FILTER_ACTIVE = 2;
+
+const todos = [
+  { text: "To study React.", done: "true" },
+  { text: "To read Bible.", done: "false" },
+  { text: "To do fitness.", done: "false" },
+];
 
 export default function TodoList() {
   return (
-    <div className="mb-3">
-      <div class="form-check fs-5">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheck"
-        />
-        <label class="form-check-label me-2" for="flexCheck">
-          Some text
-        </label>
-        <i class="bi bi-x-square-fill"></i>
-      </div>
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="fs-5">
-      <span>Show: </span>
-      <a href="#all" class="me-2 text-decoration-none">
-        ALL
-      </a>
-      <a href="#active" class="me-2 text-decoration-none">
-        ACTIVE
-      </a>
-      <a href="#done" class="me-2 text-decoration-none">
-        DONE
-      </a>
-    </div>
+    <>
+      {todos.map((todo) => (
+        <TodoItem todo={todo} />
+      ))}
+      <Footer />
+    </>
   );
 }
