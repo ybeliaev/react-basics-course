@@ -9,11 +9,11 @@ export default function TodoItem({ todo }) {
           className="me-2"
           style={{
             textDecoration: todo.done ? "line-through" : "none",
+            color: todo.done ? "grey" : "black",
             cursor: "pointer",
           }}
         >
           {todo.text}
-          {todo.done}
         </span>
         <button type="button" style={{ outline: "none", border: "none" }}>
           <i className="bi bi-x-square-fill"></i>
