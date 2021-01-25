@@ -7,51 +7,50 @@ export default function Footer({ filter, setFilter }) {
     <div className="fs-5">
       <span>Show: </span>
       {filter == FILTER_ALL ? (
+        <a href="#all">
+          <b>All</b>
+        </a>
+      ) : (
         <a
           href="#all"
-          class="me-2 link-primary"
           onClick={(e) => {
             e.preventDefault();
             setFilter(FILTER_ALL);
           }}
         >
-          ALL
-        </a>
-      ) : (
-        <a href="#all" class="me-2 link-primary">
-          ALL
+          All
         </a>
       )}
+      {", "}
       {filter == FILTER_ACTIVE ? (
-        <a href="#active" class="me-2 link-primary">
-          ACTIVE
+        <a href="#active">
+          <b>Active</b>
         </a>
       ) : (
         <a
           href="#active"
-          class="me-2 link-primary"
           onClick={(e) => {
             e.preventDefault();
             setFilter(FILTER_ACTIVE);
           }}
         >
-          ACTIVE
+          Active
         </a>
       )}
-      {filter == FILTER_ACTIVE ? (
-        <a href="#done" class="me-2 link-primary">
-          DONE
+      {", "}
+      {filter == FILTER_DONE ? (
+        <a href="#done">
+          <b>Done</b>
         </a>
       ) : (
         <a
           href="#done"
-          class="me-2 link-primary"
           onClick={(e) => {
             e.preventDefault();
             setFilter(FILTER_DONE);
           }}
         >
-          DONE
+          Done
         </a>
       )}
     </div>
