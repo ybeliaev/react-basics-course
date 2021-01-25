@@ -14,9 +14,20 @@ const todos = [
 
 export default function TodoList() {
   let [filter, setFilter] = useState(FILTER_ALL);
+
+  let filtredTodos = todos.filter((todo) => {
+    switch (filter) {
+      case FILTER_DONE:
+        return todo.done;
+      case FILTER_ACTIVE:
+        return !todo.done;
+      default:
+        return true;
+    }
+  });
   return (
     <>
-      {todos.map((todo) => (
+      {filtredTodos.map((todo) => (
         <TodoItem todo={todo} />
       ))}
       <Footer filter={filter} setFilter={setFilter} />
