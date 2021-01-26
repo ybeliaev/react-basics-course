@@ -12,6 +12,7 @@ import Lesson8 from "./lessons/8-bmi-culculator";
 import Lesson9 from "./lessons/9-norm-weight-calulate";
 import Lesson10 from "./lessons/10-project_RGB-slider";
 import Lesson11 from "./lessons/11-TODO-APP-1";
+import Lesson12 from "./lessons/12-calories-app";
 
 const title = React.createElement(
   "h1",
@@ -37,6 +38,7 @@ function App() {
         <Lesson9 />
         <Lesson10 />
         <Lesson11 />
+        <Lesson12 />
       </div>
     </div>
   );
