@@ -6,7 +6,7 @@ export const FILTER_ALL = 0;
 export const FILTER_DONE = 1;
 export const FILTER_ACTIVE = 2;
 
-export default function TodoList({ todos }) {
+export default function TodoList({ todos, removeTodo, toggleTodo }) {
   let [filter, setFilter] = useState(FILTER_ALL);
 
   let filtredTodos = todos.filter((todo) => {
@@ -22,7 +22,7 @@ export default function TodoList({ todos }) {
   return (
     <>
       {filtredTodos.map((todo) => (
-        <TodoItem todo={todo} />
+        <TodoItem todo={todo} removeTodo={removeTodo} toggleTodo={toggleTodo} />
       ))}
       <Footer filter={filter} setFilter={setFilter} />
     </>
