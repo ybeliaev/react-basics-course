@@ -22,7 +22,12 @@ export default function TodoList({ todos, removeTodo, toggleTodo }) {
   return (
     <>
       {filtredTodos.map((todo) => (
-        <TodoItem todo={todo} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+        <TodoItem
+          key={todo.text}
+          todo={todo}
+          removeTodo={removeTodo}
+          toggleTodo={toggleTodo}
+        />
       ))}
       <Footer filter={filter} setFilter={setFilter} />
     </>
