@@ -19,7 +19,12 @@ const CaloriesTodoForm = () => {
         <label className="visually-hidden" htmlFor="autoSizingInput">
           Name
         </label>
-        <input type="date" className="form-control" id="autoSizingInput" />
+        <input
+          type="date"
+          className="form-control"
+          id="autoSizingInput"
+          placeholder="MM/DD/YYYY"
+        />
       </div>
       <div className="col-md-2">
         <label className="visually-hidden" htmlFor="autoSizingInputGroup">
