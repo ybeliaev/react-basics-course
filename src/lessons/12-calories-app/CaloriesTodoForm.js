@@ -7,12 +7,16 @@ const CaloriesTodoForm = () => {
         <label className="visually-hidden" htmlFor="autoSizingSelect">
           Preference
         </label>
-        <select className="form-select" id="autoSizingSelect">
-          <option value="1" selected>
+        <select
+          className="form-select"
+          id="autoSizingSelect"
+          onChange={(e) => console.log(e.target.value)}
+        >
+          <option value="Dinner" selected>
             Dinner
           </option>
-          <option value="2">Breakfast</option>
-          <option value="3">Lunch</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
         </select>
       </div>
       <div className="col-md-2">
@@ -23,7 +27,7 @@ const CaloriesTodoForm = () => {
           type="date"
           className="form-control"
           id="autoSizingInput"
-          placeholder="MM/DD/YYYY"
+          onChange={(e) => console.log(e.target.value)}
         />
       </div>
       <div className="col-md-2">
@@ -32,10 +36,14 @@ const CaloriesTodoForm = () => {
         </label>
         <div className="input-group">
           <input
-            type="text"
+            type="number"
+            min="100"
+            max="2000"
+            step="100"
             className="form-control"
             id="autoSizingInputGroup"
             placeholder="700"
+            onChange={(e) => console.log(e.target.value)}
           />
           <div className="input-group-text">kcal</div>
         </div>
