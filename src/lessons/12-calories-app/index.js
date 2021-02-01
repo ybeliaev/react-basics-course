@@ -30,14 +30,22 @@ let initialNotes = [
 
 export default function Lesson12() {
   let [notes, setNotes] = useState(initialNotes);
+
+  function createItem(titleEating, calories, date) {
+    let newItem = { titleEating, calories, date };
+    setNotes([...notes, newItem]);
+  }
+  function removeItem(date) {
+    setNotes(notes.filter((el) => el.date != date));
+  }
   return (
     <div className="wrapper_lesson">
       <h3>Урок 12</h3>
       <h4>ПРОЕКТ CALORIES-APP</h4>
       <h4>Food Diary</h4>
-      <CaloriesTodoForm />
+      <CaloriesTodoForm createItem={createItem} />
       <CaloriesTodoSearch />
-      <CaloriesList notes={notes} />
+      <CaloriesList notes={notes} removeItem={removeItem} />
     </div>
   );
 }
