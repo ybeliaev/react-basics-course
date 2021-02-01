@@ -30,6 +30,7 @@ let initialNotes = [
 
 export default function Lesson12() {
   let [notes, setNotes] = useState(initialNotes);
+  let [searchWord, setSearchWord] = useState("");
 
   function createItem(titleEating, calories, date) {
     let newItem = { titleEating, calories, date };
@@ -38,27 +39,30 @@ export default function Lesson12() {
   function removeItem(date) {
     setNotes(notes.filter((el) => el.date != date));
   }
-  function searchItem(e) {
-    setNotes(
-      notes.filter((el) => {
-        if (
-          el.titleEating.toUpperCase().indexOf(e.target.value.toUpperCase()) ==
-          -1
-        ) {
-          return false;
-        } else {
-          return true;
-        }
-      })
-    );
-  }
+  console.log({ searchWord });
+
+  // setNotes(
+  //   notes.filter((el) => {
+  //     if (
+  //       el.titleEating.toUpperCase().indexOf(searchWord.toUpperCase()) == -1
+  //     ) {
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   })
+  // );
+
   return (
     <div className="wrapper_lesson">
       <h3>Урок 12</h3>
       <h4>ПРОЕКТ CALORIES-APP</h4>
       <h4>Food Diary</h4>
       <CaloriesTodoForm createItem={createItem} />
-      <CaloriesTodoSearch searchItem={searchItem} />
+      <CaloriesTodoSearch
+        setSearchWord={setSearchWord}
+        searchWord={searchWord}
+      />
       <CaloriesList notes={notes} removeItem={removeItem} />
     </div>
   );
