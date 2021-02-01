@@ -41,18 +41,6 @@ export default function Lesson12() {
   }
   console.log({ searchWord });
 
-  // setNotes(
-  //   notes.filter((el) => {
-  //     if (
-  //       el.titleEating.toUpperCase().indexOf(searchWord.toUpperCase()) == -1
-  //     ) {
-  //       return false;
-  //     } else {
-  //       return true;
-  //     }
-  //   })
-  // );
-
   return (
     <div className="wrapper_lesson">
       <h3>Урок 12</h3>
@@ -63,7 +51,11 @@ export default function Lesson12() {
         setSearchWord={setSearchWord}
         searchWord={searchWord}
       />
-      <CaloriesList notes={notes} removeItem={removeItem} />
+      <CaloriesList
+        notes={notes}
+        removeItem={removeItem}
+        searchWord={searchWord}
+      />
     </div>
   );
 }
