@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-function CaloriesTodoSearch() {
+function CaloriesTodoSearch({ searchItem }) {
+  let [searchWord, setSearchWord] = useState("");
+
+  function searchItem(e) {
+    setSearchWord(e.target.value);
+  }
+
   return (
     <div className="row mb-3">
       <div className="col-sm-4">
@@ -8,7 +14,8 @@ function CaloriesTodoSearch() {
           type="text"
           className="form-control"
           placeholder="Search.."
-          onChange={(e) => console.log("search", e.target.value)}
+          value={searchWord}
+          onChange={searchItem}
         />
       </div>
     </div>

@@ -38,13 +38,27 @@ export default function Lesson12() {
   function removeItem(date) {
     setNotes(notes.filter((el) => el.date != date));
   }
+  function searchItem(e) {
+    setNotes(
+      notes.filter((el) => {
+        if (
+          el.titleEating.toUpperCase().indexOf(e.target.value.toUpperCase()) ==
+          -1
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      })
+    );
+  }
   return (
     <div className="wrapper_lesson">
       <h3>Урок 12</h3>
       <h4>ПРОЕКТ CALORIES-APP</h4>
       <h4>Food Diary</h4>
       <CaloriesTodoForm createItem={createItem} />
-      <CaloriesTodoSearch />
+      <CaloriesTodoSearch searchItem={searchItem} />
       <CaloriesList notes={notes} removeItem={removeItem} />
     </div>
   );
