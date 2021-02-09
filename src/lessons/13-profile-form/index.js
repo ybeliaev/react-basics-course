@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
+
+import * as yup from "yup";
+
+let schema = yup.object().shape({
+  userName: yup.string().required(),
+  email: yup.string().email().required(),
+  about: yup.string().min(3).max(100),
+});
 
 export default function Lesson13() {
+  let initialState = {
+    userName: "john-snow",
+    email: "john-snow@gmail.com",
+    about: "...",
+  };
+  let [inputs, setInputs] = useState({
+    userName: initialState.userName,
+    email: initialState.email,
+    about: initialState.about,
+  });
+  let [errors, setErrors] = useState({});
   return (
     <div className="wrapper_lesson">
       <h3>Урок 13</h3>
