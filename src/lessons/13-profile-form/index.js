@@ -2,11 +2,23 @@ import React, { useState } from "react";
 
 import * as yup from "yup";
 
+// flag {abortEarly: true/false}, true - валидация прекращается при первой ошибке
+// {abortEarly: true} - поле errors будет массивом с текстом ошибки
+// {abortEarly: false} - поле inner будет массивом с текстом ошибки
 let schema = yup.object().shape({
-  userName: yup.string().required(),
+  userName: yup.string().min(3).max(50).required(),
   email: yup.string().email().required(),
-  about: yup.string().min(3).max(100),
+  about: yup.string().min(3).max(500),
 });
+// функция для конвертации ошибок в нужный формат
+function convert(errors) {
+  return errors.inner.reduce((acc, item) => {
+    let name = (item.path || "").includes(".")
+      ? item.path.split(".")
+      : item.path || "";
+    return acc[item.path || ""] ? acc : { ...acc, [name]: item.message };
+  }, {});
+}
 
 export default function Lesson13() {
   let initialState = {
@@ -19,6 +31,7 @@ export default function Lesson13() {
     email: initialState.email,
     about: initialState.about,
   });
+
   let [errors, setErrors] = useState({});
 
   function onChange(event) {
@@ -30,6 +43,7 @@ export default function Lesson13() {
   }
   function onSubmit(event) {
     event.preventDefault();
+    console.log(inputs);
   }
   return (
     <div className="wrapper_lesson">
