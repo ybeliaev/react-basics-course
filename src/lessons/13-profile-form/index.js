@@ -20,6 +20,8 @@ export default function Lesson13() {
     about: initialState.about,
   });
   let [errors, setErrors] = useState({});
+
+  function onChange() {}
   return (
     <div className="wrapper_lesson">
       <h3>Урок 13</h3>
@@ -29,30 +31,32 @@ export default function Lesson13() {
           <label htmlFor="exampleInputPassword1" className="form-label">
             Username
           </label>
-          <span> (*)</span>
+          <span>&nbsp;(*)</span>
           <input
             type="text"
             className="form-control"
             id="exampleInputPassword1"
-            placeholder="john-snow"
+            value={inputs.userName}
+            onChange={onChange}
           />
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email
           </label>
-          <span> (*)</span>
+          <span>&nbsp;(*)</span>
           <input
             type="email"
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            placeholder="john-snow@gmail.com"
+            value={inputs.email}
           />
         </div>
 
         <div className="form-group mb-2">
-          <label>About</label> (*)
+          <label>About</label>
+          <span>&nbsp;(*)</span>
           <br />
           <textarea
             name="body"
@@ -60,7 +64,7 @@ export default function Lesson13() {
             className="form-control"
             value={null}
             onChange={null}
-            placeholder="..."
+            value={inputs.about}
           />
         </div>
         <button type="submit" className="btn btn-primary">
