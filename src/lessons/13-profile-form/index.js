@@ -78,12 +78,21 @@ export default function Lesson13() {
 
   let [errors, setErrors] = useState({});
 
-  function onChange(event) {
+  async function onChange(event) {
     let {
       target: { value, name, type, checked },
     } = event;
     value = type == "checkbox" ? checked : value;
+
+    let newErrors = await schema
+      .validateAt(name, { [name]: value }, { abortEarly: false })
+      // validateAt позволяет валидировать по пути. У меня - это name. { [name]: value } - обяз объект(определено схемой)
+      .then((_) => ({ [name]: "" }))
+      .catch(convert);
+
     setInputs((inputs) => ({ ...inputs, [name]: value })); // [name] - атрибут name у input
+
+    setErrors({ ...errors, ...newErrors });
   }
   async function onSubmit(event) {
     event.preventDefault();
@@ -97,6 +106,7 @@ export default function Lesson13() {
       console.log(inputs);
     }
   }
+
   return (
     <div className="wrapper_lesson">
       <h3>Урок 13</h3>
@@ -106,7 +116,9 @@ export default function Lesson13() {
           <label htmlFor="password-13" className="form-label">
             Username
           </label>
-          <span>&nbsp;({errors.userName || "*"})</span>
+          <span style={{ color: "tomato", fontSize: "1rem" }}>
+            &nbsp;{errors.userName}
+          </span>
           <input
             type="text"
             name="userName"
