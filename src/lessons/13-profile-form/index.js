@@ -61,7 +61,7 @@ export default function Lesson13() {
     <div className="wrapper_lesson">
       <h3>Урок 13</h3>
       <h4>Profile Form</h4>
-      <form className="w-50 fs-5" onSubmit={handleSubmit}>
+      <form className="w-50 fs-5" onSubmit={onSubmit(handleSubmit)}>
         <div className="mb-3">
           <label htmlFor="password-13" className="form-label">
             Username
