@@ -25,15 +25,18 @@ export default function Lesson14() {
     };
   }, [state.running]);
 
-  function getLeftTime(e) {
+  function getLeftTime() {
     setState({
       ...state,
       running: !state.running,
     });
   }
 
-  function restartTime(e) {
-    console.log(state.running);
+  function restartTime() {
+    setState({
+      time: 3000,
+      running: false,
+    });
   }
 
   return (
