@@ -1,31 +1,39 @@
 import React, { useState, useEffect } from "react";
 
 export default function Lesson14() {
-  let [time, setTime] = useState(3000);
-  let [running, setRunning] = useState("false");
+  let [state, setState] = useState({
+    time: 3000,
+    running: false,
+  });
 
   useEffect(() => {
     let interval;
-    if (running) {
+    if (state.running) {
       interval = setInterval(() => {
-        setTime((time) => {
-          return time > 0 ? (time - 100).toFixed(1) : 0.0;
+        let newTime = state.time - 100;
+        setState(({ time, running }) => {
+          let newTime = time - 100;
+          return {
+            time: newTime,
+            running: newTime > 0,
+          };
         });
       }, 100);
     }
     return () => {
       clearInterval(interval);
     };
-  }, [running]);
+  }, [state.running]);
 
   function getLeftTime(e) {
-    setRunning((running) => !running);
+    setState({
+      ...state,
+      running: !state.running,
+    });
   }
 
   function restartTime(e) {
-    console.log(running);
-    setTime(3000);
-    setRunning((running) => false);
+    console.log(state.running);
   }
 
   return (
@@ -36,11 +44,11 @@ export default function Lesson14() {
         <div>
           Seconds Left:{" "}
           <span className="badge bg-dark  me-1">
-            {(time / 1000).toFixed(1)}
+            {(state.time / 1000).toFixed(1)}
           </span>
           Running:{" "}
           <span className="badge bg-dark me-2">
-            {running ? "true" : "false"}
+            {state.running ? "true" : "false"}
           </span>
         </div>
         <hr />
@@ -48,9 +56,9 @@ export default function Lesson14() {
           <button
             className="btn btn-outline-primary me-2"
             onClick={getLeftTime}
-            disabled={!time}
+            disabled={!state.time}
           >
-            {running == false ? (
+            {state.running == false ? (
               <i className="fa fa-play"></i>
             ) : (
               <i className="fa fa-pause"></i>
