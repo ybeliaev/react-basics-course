@@ -1,5 +1,7 @@
 import React from "react";
 
+import * as R from "ramda";
+
 function createMarkup1() {
   return {
     __html: `<pre>
@@ -22,14 +24,18 @@ function createMarkup2() {
     function() {
         fetch("https://jsonplaceholder.typicode.com/todos/1")
         .then(resp => [resp, resp.json()])
-        .then(([resp,data]) => {console.log(data); console.log(res);})
+        .then(([resp, data]) => {console.log(data); console.log(res);})
     };
     
     // или
 
     function() {
-        fetch("https://jsonplaceholder.typicode.com/todos/1")
-        .then(resp => resp.json().then(data => {console.log(data); console.log(res)}
+      fetch("https://jsonplaceholder.typicode.com/todos/1").then((resp) =>
+      resp.json().then((data) => {
+        console.log(data);
+        console.log(resp);
+      })
+    );
     };
       </code>
       </pre>
@@ -38,22 +44,32 @@ function createMarkup2() {
 }
 
 function MyComponent1() {
-  return <div dangerouslySetInnerHTML={createMarkup1()} />;
+  return (
+    <div
+      className="fs-4 text-info bg-dark"
+      dangerouslySetInnerHTML={createMarkup1()}
+    />
+  );
 }
 function MyComponent2() {
-  return <div dangerouslySetInnerHTML={createMarkup2()} />;
+  return (
+    <div
+      className="fs-4 text-info bg-dark"
+      dangerouslySetInnerHTML={createMarkup2()}
+    />
+  );
 }
-// let data = null;
-(async function () {
-  let res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  let data = await res.json();
-  console.log(data);
-  console.log(res);
-})();
+
+fetch("https://api.github.com/users/ybeliaev").then((resp) =>
+  resp.json().then((data) => {
+    console.log(data);
+    console.log(resp);
+  })
+);
 
 export default function Lesson15() {
   return (
-    <div className="wrapper_lesson">
+    <div className="wrapper_lesson fs-4">
       <h3>Урок 15</h3>
       <h4>Git API</h4>
       <p>
@@ -63,6 +79,10 @@ export default function Lesson15() {
       <p>Такая запись даёт возможность работать с несколькими переменными</p>
       <p>Похожее в формате then:</p>
       <MyComponent2 />
+      <p>
+        Когда возможно, испол первый вариант с async\await, если нет -
+        последний, с чейнингом
+      </p>
     </div>
   );
 }
