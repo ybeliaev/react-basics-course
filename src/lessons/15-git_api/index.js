@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as R from "ramda";
+import { func } from "prop-types";
 
 function createMarkup1() {
   return {
@@ -60,12 +61,24 @@ function MyComponent2() {
   );
 }
 
-fetch("https://api.github.com/users/ybeliaev").then((resp) =>
-  resp.json().then((data) => {
-    console.log(data);
-    console.log(resp);
-  })
-);
+// fetch("https://api.github.com/users/ybeliaev").then((resp) =>
+//   resp.json().then((data) => {
+//     console.log(data);
+//     console.log(resp);
+//   })
+// );
+
+async function fetchJSON(url, optons = {}) {
+  optons = R.mergeDeepRight(optons, {
+    header: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(optons.body),
+  });
+  let resp = await fetch(url, optons);
+  return resp.json();
+}
 
 export default function Lesson15() {
   return (
