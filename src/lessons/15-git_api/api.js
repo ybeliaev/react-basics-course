@@ -5,6 +5,7 @@ export function makeApiClient(origin) {
     if (!url.startsWith("http")) {
       url = origin + url;
     }
+
     options = R.mergeDeepRight(options, {
       headers: {
         Accept: "application/json", // "Accept" почему то кавычки снимаются

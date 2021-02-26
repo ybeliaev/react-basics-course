@@ -5,27 +5,29 @@ import { makeApiClient } from "./api";
 import { MyComponent1 } from "./components";
 import { MyComponent2 } from "./components";
 
-// fetch("https://api.github.com/users/ybeliaev").then((resp) =>
-//   resp.json().then((data) => {
-//     console.log(data);
-//     console.log(resp);
-//   })
-// );
 let client = makeApiClient("https://api.github.com");
 
 export default function Lesson15() {
   let [user, setUser] = useState(null);
+  let [loading, setLoading] = useState(true);
+  let [error, setError] = useState(null);
 
   useEffect(() => {
-    client.fetchJSON("/users/ybeliaev").then((user) => setUser(user));
+    client
+      .fetchJSON("/users/ybeliaev")
+      .then((user) => {
+        setUser(user);
+        setLoading(false);
+      })
+      .catch((error) => setError(error)); // or catch(setError)
   }, []);
 
-  if (!user) {
-    return (
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    );
+  if (error) {
+    return <Error error={error} />;
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
@@ -50,6 +52,25 @@ export default function Lesson15() {
         src={user.avatar_url}
       />
       <span className="ms-2 badge bg-primary">{user.login}</span>
+    </div>
+  );
+}
+
+function Error({ error }) {
+  // объект error приводить к строке - временное решение
+  return (
+    <h1>
+      <span className="badge bg-danger">{String(error)}</span>
+    </h1>
+  );
+}
+
+function Loading() {
+  return (
+    <div class="d-flex justify-content-center">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
     </div>
   );
 }
