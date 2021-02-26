@@ -1,7 +1,6 @@
 import React from "react";
 
 import * as R from "ramda";
-import { func } from "prop-types";
 
 function createMarkup1() {
   return {
@@ -68,17 +67,37 @@ function MyComponent2() {
 //   })
 // );
 
-async function fetchJSON(url, optons = {}) {
-  optons = R.mergeDeepRight(optons, {
-    header: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(optons.body),
-  });
-  let resp = await fetch(url, optons);
-  return resp.json();
+function makeJsonClient(origin) {
+  async function fetchJSON(url, options = {}) {
+    if (!url.startsWith("http")) {
+      url = origin + url;
+    }
+    options = R.mergeDeepRight(options, {
+      headers: {
+        Accept: "application/json", // "Accept" почему то кавычки снимаются
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(options.body),
+    });
+    let resp = await fetch(url, options);
+
+    if ((resp.headers.get("content-type") || "").includes("application/json")) {
+      try {
+        return resp.json();
+      } catch (err) {
+        throw new Error(`API: Invalid JSON`);
+      }
+    } else {
+      throw new Error(`API: Invalid mime-type`);
+    }
+  }
+  return {
+    fetchJSON,
+  };
 }
+
+let client = makeJsonClient("https://api.github.com");
+client.fetchJSON("/users/ybeliaev").then(console.log);
 
 export default function Lesson15() {
   return (
