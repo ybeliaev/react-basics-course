@@ -2,63 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { makeApiClient } from "./api";
 
-function createMarkup1() {
-  return {
-    __html: `<pre>
-        <code>
-    (async function () {
-        let res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-        let data = await res.json();
-        console.log(data);
-        console.log(res);
-        })();
-    </code>
-    </pre>
-      `,
-  };
-}
-function createMarkup2() {
-  return {
-    __html: `<pre>
-          <code>
-    function() {
-        fetch("https://jsonplaceholder.typicode.com/todos/1")
-        .then(resp => [resp, resp.json()])
-        .then(([resp, data]) => {console.log(data); console.log(res);})
-    };
-    
-    // или
-
-    function() {
-      fetch("https://jsonplaceholder.typicode.com/todos/1").then((resp) =>
-      resp.json().then((data) => {
-        console.log(data);
-        console.log(resp);
-      })
-    );
-    };
-      </code>
-      </pre>
-    `,
-  };
-}
-
-function MyComponent1() {
-  return (
-    <div
-      className="fs-4 text-info bg-dark"
-      dangerouslySetInnerHTML={createMarkup1()}
-    />
-  );
-}
-function MyComponent2() {
-  return (
-    <div
-      className="fs-4 text-info bg-dark"
-      dangerouslySetInnerHTML={createMarkup2()}
-    />
-  );
-}
+import { MyComponent1 } from "./components";
+import { MyComponent2 } from "./components";
 
 // fetch("https://api.github.com/users/ybeliaev").then((resp) =>
 //   resp.json().then((data) => {
