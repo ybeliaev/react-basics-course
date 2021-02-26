@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import * as R from "ramda";
+import { makeApiClient } from "./api";
 
 function createMarkup1() {
   return {
@@ -66,40 +66,23 @@ function MyComponent2() {
 //     console.log(resp);
 //   })
 // );
-
-function makeJsonClient(origin) {
-  async function fetchJSON(url, options = {}) {
-    if (!url.startsWith("http")) {
-      url = origin + url;
-    }
-    options = R.mergeDeepRight(options, {
-      headers: {
-        Accept: "application/json", // "Accept" почему то кавычки снимаются
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(options.body),
-    });
-    let resp = await fetch(url, options);
-
-    if ((resp.headers.get("content-type") || "").includes("application/json")) {
-      try {
-        return resp.json();
-      } catch (err) {
-        throw new Error(`API: Invalid JSON`);
-      }
-    } else {
-      throw new Error(`API: Invalid mime-type`);
-    }
-  }
-  return {
-    fetchJSON,
-  };
-}
-
-let client = makeJsonClient("https://api.github.com");
-client.fetchJSON("/users/ybeliaev").then(console.log);
+let client = makeApiClient("https://api.github.com");
 
 export default function Lesson15() {
+  let [user, setUser] = useState(null);
+
+  useEffect(() => {
+    client.fetchJSON("/users/ybeliaev").then((user) => setUser(user));
+  }, []);
+
+  if (!user) {
+    return (
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
+  }
+
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 15</h3>
@@ -115,6 +98,13 @@ export default function Lesson15() {
         Когда возможно, испол первый вариант с async\await, если нет -
         последний, с чейнингом
       </p>
+      <h4>My name is {user.name}</h4>
+      <img
+        className="border border-primary"
+        width="150px"
+        src={user.avatar_url}
+      />
+      <span className="ms-2 badge bg-primary">{user.login}</span>
     </div>
   );
 }
