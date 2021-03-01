@@ -16,6 +16,7 @@ import Lesson12 from "./lessons/12-calories-app";
 import Lesson13 from "./lessons/13-profile-form";
 import Lesson14 from "./lessons/14-pomodoro";
 import Lesson15 from "./lessons/15-git_api";
+import Lesson16 from "./lessons/16-git_api";
 
 const title = React.createElement(
   "h1",
@@ -45,6 +46,7 @@ function App() {
         <Lesson13 />
         <Lesson14 />
         <Lesson15 />
+        <Lesson16 />
       </div>
     </div>
   );
