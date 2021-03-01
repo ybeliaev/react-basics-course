@@ -2,38 +2,37 @@ import React, { useEffect, useState } from "react";
 
 import { makeApiClient } from "./api";
 
-let client = makeApiClient("https://api.github.com");
+let apiClient = makeApiClient("https://api.github.com");
 
 export default function Lesson15() {
   let [user, setUser] = useState(null);
   let [repos, setRepos] = useState(null);
   let [error, setError] = useState(null);
-  let [loading, setLoading] = useState(true);
+  let [loading1, setLoading1] = useState(true);
+  let [loading2, setLoading2] = useState(true);
 
-  useEffect(() => {
-    client
-      .fetchJSON("/users/ybeliaev")
-      .then((user) => {
-        setUser(user);
-        setLoading(false);
-      })
-      .catch((error) => setError(error)); // or catch(setError)
+  // Effect-1
+  useEffect((_) => {
+    apiClient.fetchJSON("/users/ybeliaev").then((user) => {
+      setUser(user);
+      setLoading1(false);
+    });
   }, []);
-
-  useEffect(() => {
-    client
+  // Effect-2
+  useEffect((_) => {
+    apiClient
       .fetchJSON("/users/ybeliaev/repos?sort=created&per_page=5")
       .then((repos) => {
         setRepos(repos);
-        setLoading(false);
-      })
-      .catch((error) => setError(error)); // or catch(setError)
+        setLoading2(false);
+      });
   }, []);
+
   if (error) {
     return <Error error={error} />;
   }
 
-  if (loading) {
+  if (loading1 || loading2) {
     return <Loading />;
   }
 
