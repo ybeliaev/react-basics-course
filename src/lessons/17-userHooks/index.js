@@ -1,31 +1,45 @@
+import { func } from "prop-types";
 import React, { useEffect, useState } from "react";
 
 let apiClient = makeApiClient("https://api.github.com");
 
-export default function Lesson17() {
-  let [user, setUser] = useState({ name: "John" });
+apiClient("/users/ybeliaev").then((res) => console.log("res from git: ", res));
+
+function Lesson17() {
+  let [user, setUser] = useState(null);
   let [repos, setRepos] = useState(null);
-  let [loading, setLoading] = useState(true);
+  let [loading1, setLoading1] = useState(true);
+  let [loading2, setLoading2] = useState(true);
 
   useEffect((_) => {
     apiClient("/users/ybeliaev").then((user) => {
+      //   console.log("user from useEffect: ", user);
       setUser(user);
-      setLoading(false);
+      setLoading1(false);
     });
   }, []);
   useEffect((_) => {
-    apiClient("/users/ybeliaev/repos?sort=created&per_page=5").then((repos) => {
+    apiClient("/users/ybeliaev/repos?sort=created&per_page=7").then((repos) => {
+      console.log("user from useEffect: ", repos);
       setRepos(repos);
+      setLoading2(false);
     });
   }, []);
+  if (loading1 || loading2) {
+    return <Loading />;
+  }
 
   return (
     <div className="wrapper_lesson fs-4">
-      <h3>Урок 16.</h3>
+      <h3>Урок 17.</h3>
       <h4>Git API. Multiple requests.</h4>
+      <span className="badge bg-warning text-dark">
+        Особенность: при более одного запроса нужно ждать все, и после
+        отображать контент. Поэтому заведено два состояния лоадинга
+      </span>
       <h5>My name is {user.name}</h5>
       <img
-        className="border border-primary"
+        className="border border-primary rounded-3"
         width="150px"
         src={user.avatar_url}
       />
@@ -70,3 +84,5 @@ function Loading() {
     </div>
   );
 }
+
+export default Lesson17;
