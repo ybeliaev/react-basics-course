@@ -51,7 +51,7 @@ export default function Lesson15() {
       {repos.map((repo) => {
         return (
           <ul className="list-group" key={repo.id}>
-            <li className="list-group-item">
+            <li className="list-group-item mb-2 bg-light ">
               <h4 className="h5">
                 <a href={repo.html_url}>{repo.name}</a> ★{" "}
                 {repo.stargazers_count}

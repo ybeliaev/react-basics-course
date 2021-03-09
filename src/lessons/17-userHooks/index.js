@@ -1,36 +1,24 @@
 import React, { useEffect, useState } from "react";
 
-export function makeApiClient(origin) {
-  async function fetchJSON(url, options = {}) {
-    if (!url.startsWith("http")) {
-      url = origin + url;
-    }
-
-    options = R.mergeDeepRight(options, {
-      headers: {
-        Accept: "application/json", // "Accept" почему то кавычки снимаются
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(options.body),
-    });
-    let resp = await fetch(url, options);
-
-    if ((resp.headers.get("content-type") || "").includes("application/json")) {
-      try {
-        return resp.json();
-      } catch (err) {
-        throw new Error(`API: Invalid JSON`);
-      }
-    } else {
-      throw new Error(`API: Invalid mime-type`);
-    }
-  }
-  return {
-    fetchJSON,
-  };
-}
+let apiClient = makeApiClient("https://api.github.com");
 
 export default function Lesson17() {
+  let [user, setUser] = useState({ name: "John" });
+  let [repos, setRepos] = useState(null);
+  let [loading, setLoading] = useState(true);
+
+  useEffect((_) => {
+    apiClient("/users/ybeliaev").then((user) => {
+      setUser(user);
+      setLoading(false);
+    });
+  }, []);
+  useEffect((_) => {
+    apiClient("/users/ybeliaev/repos?sort=created&per_page=5").then((repos) => {
+      setRepos(repos);
+    });
+  }, []);
+
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 16.</h3>
@@ -55,6 +43,30 @@ export default function Lesson17() {
           </ul>
         );
       })}
+    </div>
+  );
+}
+
+function makeApiClient(origin) {
+  async function fetchJSON(url) {
+    url = origin + url;
+
+    let resp = await fetch(url);
+    try {
+      return resp.json();
+    } catch (err) {
+      throw new Error(`API: Invalid JSON`);
+    }
+  }
+  return fetchJSON;
+}
+
+function Loading() {
+  return (
+    <div class="d-flex justify-content-center">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
     </div>
   );
 }
