@@ -1,4 +1,3 @@
-import { func } from "prop-types";
 import React, { useEffect, useState } from "react";
 
 let apiClient = makeApiClient("https://api.github.com");

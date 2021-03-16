@@ -18,6 +18,7 @@ import Lesson14 from "./lessons/14-pomodoro";
 import Lesson15 from "./lessons/15-git_api";
 import Lesson16 from "./lessons/16-git_api";
 import Lesson17 from "./lessons/17-userHooks";
+import Lesson18 from "./lessons/18-hooks_&_pattern_render-props";
 
 const title = React.createElement(
   "h1",
@@ -49,6 +50,7 @@ function App() {
         <Lesson15 />
         <Lesson16 />
         <Lesson17 />
+        <Lesson18 />
       </div>
     </div>
   );
