@@ -19,6 +19,7 @@ import Lesson15 from "./lessons/15-git_api";
 import Lesson16 from "./lessons/16-git_api";
 import Lesson17 from "./lessons/17-userHooks";
 import Lesson18 from "./lessons/18-hooks_&_pattern_render-props";
+import Lesson19 from "./lessons/19-without_hook";
 
 const title = React.createElement(
   "h1",
@@ -51,6 +52,7 @@ function App() {
         <Lesson16 />
         <Lesson17 />
         <Lesson18 />
+        <Lesson19 />
       </div>
     </div>
   );
