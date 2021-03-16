@@ -13,7 +13,7 @@ function Lesson19() {
     <div className="wrapper_lesson fs-4">
       <h3>Урок 19.</h3>
       <h4>ПАТТЕРН RENDER-PROP.</h4>
-      <span className="fs-6 badge bg-warning text-dark">
+      <span className="mb-1 fs-6 badge bg-warning text-dark">
         Этот паттерн хорош, когда много состояний, т.к. аргументы функций
         инкапсулированы
       </span>
