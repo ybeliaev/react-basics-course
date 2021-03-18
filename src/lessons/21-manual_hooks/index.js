@@ -25,7 +25,10 @@ function Lesson21() {
       </span>
       <hr />
       <h5 className="text-center">Hook useHover</h5>
-      <Hover />
+      <div style={{ display: "flex" }}>
+        <Hover1 />
+        <Hover2 />
+      </div>
     </div>
   );
 }
@@ -69,12 +72,31 @@ function Inputs() {
     </div>
   );
 }
-function Hover() {
+function Hover1() {
   const ref = useRef();
+  const isHover = useHover(ref);
   return (
     <div
       ref={ref}
-      style={{ width: 150, height: 150, backgroundColor: "#ff0066" }}
+      style={{
+        width: 150,
+        height: 150,
+        backgroundColor: isHover ? "#ff0066" : "#00cc99",
+      }}
+    ></div>
+  );
+}
+function Hover2() {
+  const ref = useRef();
+  const isHover = useHover(ref);
+  return (
+    <div
+      ref={ref}
+      style={{
+        width: 150,
+        height: 150,
+        backgroundColor: isHover ? "#9900ff" : "#0099ff",
+      }}
     ></div>
   );
 }

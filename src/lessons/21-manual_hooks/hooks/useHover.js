@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function useHover(ref) {
+export default function useHover(ref) {
   let [isHovering, setHovering] = useState(false);
 
   const on = () => setHovering(true);
