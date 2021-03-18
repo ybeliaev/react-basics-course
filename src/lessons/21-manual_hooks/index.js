@@ -15,17 +15,27 @@ function Lesson21() {
       </span>
       <h5 className="text-center">Hook useInput</h5>
       <Inputs />
+      <span className="mb-1 fs-6 badge bg-warning text-dark">
+        Тут проблема: как реализовать обнуление инпутов, если кнопкой до стейта
+        не дотянуться?
+      </span>
+      <span className="mb-1 fs-6 badge bg-warning text-dark">
+        Пришлось присвоить свойство объекта переменной с другим названием
+      </span>
     </div>
   );
 }
 
 function Inputs() {
   const userObj = useInputs("");
-  let { value: user } = userObj;
+  let { value: user, onChange: onChangeUser, resetValue: resetUser } = userObj;
 
   const passObj = useInputs("");
-  let { value: pass } = passObj;
-
+  let { value: pass, onChange: onChangePass, resetValue: resetPass } = passObj;
+  function resetAllvalue() {
+    resetPass();
+    resetUser();
+  }
   return (
     <div class="mb-3 w-25 fs-5">
       <label className="form-label">Usename</label>
@@ -43,15 +53,9 @@ function Inputs() {
         placeholder="password"
         {...passObj}
       />
-      {/* <button
-        className="btn btn-primary mt-2"
-        onClick={() => {
-          useInputs("");
-          setPass("");
-        }}
-      >
+      <button className="btn btn-primary mt-2" onClick={resetAllvalue}>
         CLEAR
-      </button> */}
+      </button>
       <br />
       Username:
       <span className="bg-info"> {user}</span>
