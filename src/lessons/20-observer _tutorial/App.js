@@ -11,8 +11,8 @@ const App = () => {
   // All the ref to be observed
   const intersection = useIntersection(sectionRef, {
     root: null,
-    rootMargin: "0px",
-    threshold: 0.2,
+    rootMargin: "0px", // точка отступа от края когда эффект сработает
+    threshold: 0.2, // какая часть контента должна прокрутится от 0 до 1
   });
 
   // Animation for fading in
@@ -26,7 +26,7 @@ const App = () => {
       },
     });
   };
-  // Animation for fading out
+  // Animation for fading out можно отключить тогда не будет пропадать при повторном скролле
   const fadeOut = (element) => {
     gsap.to(element, 1, {
       opacity: 0,
@@ -36,7 +36,7 @@ const App = () => {
   };
 
   // checking to see when the vieport is visible to the user
-  intersection && intersection.intersectionRatio < 0.2
+  intersection && intersection.intersectionRatio < 0.2 // должно совпадать с threshold
     ? fadeOut(".fadeIn")
     : fadeIn(".fadeIn");
 
