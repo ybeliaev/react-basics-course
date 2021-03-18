@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import useInputs from "./hooks/useInput";
+import useHover from "./hooks/useHover";
 
 function Lesson21() {
   return (
@@ -22,6 +23,9 @@ function Lesson21() {
       <span className="mb-1 fs-6 badge bg-warning text-dark">
         Пришлось присвоить свойство объекта переменной с другим названием
       </span>
+      <hr />
+      <h5 className="text-center">Hook useHover</h5>
+      <Hover />
     </div>
   );
 }
@@ -63,6 +67,15 @@ function Inputs() {
       Password:
       <span className=" bg-info"> {pass}</span>
     </div>
+  );
+}
+function Hover() {
+  const ref = useRef();
+  return (
+    <div
+      ref={ref}
+      style={{ width: 150, height: 150, backgroundColor: "#ff0066" }}
+    ></div>
   );
 }
 
