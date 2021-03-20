@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import useInputs from "./hooks/useInput";
 import useHover from "./hooks/useHover";
@@ -29,10 +29,13 @@ function Lesson21() {
         <Hover1 />
         <Hover2 />
       </div>
+      <hr />
+      <h5 className="text-center">Hook pagination</h5>
+      <List />
     </div>
   );
 }
-
+// ***************************************************************
 function Inputs() {
   const userObj = useInputs("");
   let { value: user, onChange: onChangeUser, resetValue: resetUser } = userObj;
@@ -72,6 +75,7 @@ function Inputs() {
     </div>
   );
 }
+// ***************************************************************
 function Hover1() {
   const ref = useRef();
   const isHover = useHover(ref);
@@ -98,6 +102,29 @@ function Hover2() {
         backgroundColor: isHover ? "#9900ff" : "#0099ff",
       }}
     ></div>
+  );
+}
+// ***************************************************************
+function List() {
+  const [todos, setTodos] = useState([]);
+
+  function fetchTodos() {
+    fetch(`https://jsonplaceholder.typicode.com/todos`)
+      .then((response) => response.json())
+      .then((json) => setTodos(json));
+  }
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  return (
+    <ul className="list-group w-50">
+      {todos.map((todo) => (
+        <li key={todo.id} className="list-group-item list-group-item-action">
+          {todo.title}
+        </li>
+      ))}
+    </ul>
   );
 }
 
