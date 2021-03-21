@@ -31,7 +31,9 @@ function Lesson21() {
       </div>
       <hr />
       <h5 className="text-center">Hook pagination</h5>
-      <List />
+      <div style={{ maxHeight: "500px", overflowY: "auto" }}>
+        <List />
+      </div>
     </div>
   );
 }
@@ -107,9 +109,12 @@ function Hover2() {
 // ***************************************************************
 function List() {
   const [todos, setTodos] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const limit = 10;
 
   function fetchTodos() {
-    fetch(`https://jsonplaceholder.typicode.com/todos`)
+    fetch(`https://jsonplaceholder.typicode.com/todos?_limit=20`)
       .then((response) => response.json())
       .then((json) => setTodos(json));
   }
