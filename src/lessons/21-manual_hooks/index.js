@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 
 import useInputs from "./hooks/useInput";
 import useHover from "./hooks/useHover";
+import useObserver from "./hooks/useObserver";
 
 function Lesson21() {
   return (
@@ -110,23 +111,31 @@ function Hover2() {
 function List() {
   const [todos, setTodos] = useState([]);
   const [page, setPage] = useState(1);
+  const limit = 20;
+  const parentRef = useRef();
+  const childRef = useRef();
 
-  const limit = 10;
+  const intersected = useObserver(parentRef, childRef, () =>
+    fetchTodos(page, limit)
+  );
 
-  function fetchTodos() {
-    fetch(`https://jsonplaceholder.typicode.com/todos?_limit=20`)
+  function fetchTodos(page, limit) {
+    fetch(
+      `https://jsonplaceholder.typicode.com/todos?_limit=${limit}&_page=${page}`
+    )
       .then((response) => response.json())
-      .then((json) => setTodos(json));
+      .then((json) => {
+        setTodos((prev) => [...prev, ...json]);
+        setPage((prev) => prev + 1);
+      });
   }
-  useEffect(() => {
-    fetchTodos();
-  }, []);
 
   return (
-    <ul className="list-group w-50">
+    <ul className="list-group w-50" ref={parentRef}>
       {todos.map((todo) => (
         <li key={todo.id} className="list-group-item list-group-item-action">
-          {todo.title}
+          {todo.id}. {todo.title}
+          <div ref={childRef}></div>
         </li>
       ))}
     </ul>
