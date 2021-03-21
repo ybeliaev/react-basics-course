@@ -5,6 +5,7 @@ import useHover from "./hooks/useHover";
 import useObserver from "./hooks/useObserver";
 
 function Lesson21() {
+  let [loading, setLoading] = useState(true);
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 21.</h3>
@@ -26,6 +27,7 @@ function Lesson21() {
       </span>
       <hr />
       <h5 className="text-center">Hook useHover</h5>
+
       <div style={{ display: "flex" }}>
         <Hover1 />
         <Hover2 />
@@ -139,6 +141,13 @@ function List() {
         </li>
       ))}
     </ul>
+  );
+}
+function Loader() {
+  return (
+    <div class="spinner-grow" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   );
 }
 
