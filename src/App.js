@@ -22,6 +22,7 @@ import Lesson18 from "./lessons/18-hooks_&_pattern_render-props";
 import Lesson19 from "./lessons/19-without_hook";
 import Lesson20 from "./lessons/20-observer _tutorial";
 import Lesson21 from "./lessons/21-manual_hooks";
+import Lesson22 from "./lessons/22-observer_hook";
 
 const title = React.createElement(
   "h1",
@@ -57,6 +58,7 @@ function App() {
         <Lesson19 />
         <Lesson20 />
         <Lesson21 />
+        <Lesson22 />
       </div>
     </div>
   );

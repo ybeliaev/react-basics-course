@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 import useInputs from "./hooks/useInput";
 import useHover from "./hooks/useHover";
-import useObserver from "./hooks/useObserver";
 
 function Lesson21() {
-  let [loading, setLoading] = useState(true);
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 21.</h3>
@@ -25,17 +23,10 @@ function Lesson21() {
       <span className="mb-1 fs-6 badge bg-warning text-dark">
         Пришлось присвоить свойство объекта переменной с другим названием
       </span>
-      <hr />
-      <h5 className="text-center">Hook useHover</h5>
 
       <div style={{ display: "flex" }}>
         <Hover1 />
         <Hover2 />
-      </div>
-      <hr />
-      <h5 className="text-center">Hook pagination</h5>
-      <div style={{ maxHeight: "500px", overflowY: "auto" }}>
-        <List />
       </div>
     </div>
   );
@@ -107,47 +98,6 @@ function Hover2() {
         backgroundColor: isHover ? "#9900ff" : "#0099ff",
       }}
     ></div>
-  );
-}
-// ***************************************************************
-function List() {
-  const [todos, setTodos] = useState([]);
-  const [page, setPage] = useState(1);
-  const limit = 20;
-  const parentRef = useRef();
-  const childRef = useRef();
-
-  const intersected = useObserver(parentRef, childRef, () =>
-    fetchTodos(page, limit)
-  );
-
-  function fetchTodos(page, limit) {
-    fetch(
-      `https://jsonplaceholder.typicode.com/todos?_limit=${limit}&_page=${page}`
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        setTodos((prev) => [...prev, ...json]);
-        setPage((prev) => prev + 1);
-      });
-  }
-
-  return (
-    <ul className="list-group w-50" ref={parentRef}>
-      {todos.map((todo) => (
-        <li key={todo.id} className="list-group-item list-group-item-action">
-          {todo.id}. {todo.title}
-          <div ref={childRef}></div>
-        </li>
-      ))}
-    </ul>
-  );
-}
-function Loader() {
-  return (
-    <div class="spinner-grow" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
   );
 }
 
