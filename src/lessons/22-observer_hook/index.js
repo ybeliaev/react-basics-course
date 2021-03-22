@@ -1,26 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
+import useSearch from "../22-observer_hook/useSearch";
 
 export default function Lesson22() {
-  let [loading, setLoading] = useState(true);
-  const [todos, setTodos] = useState([]);
   const [page, setPage] = useState(1);
+  let limit = 10;
+  const { todos, loading } = useSearch(limit, page);
   const parentRef = useRef();
   const childRef = useRef();
-
-  function fetchTodos() {
-    fetch(`https://jsonplaceholder.typicode.com/todos`)
-      .then((response) => response.json())
-      .then((json) => {
-        setTodos(json);
-        setLoading(false);
-      });
-  }
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-  // const intersected = useObserver(parentRef, childRef, () =>
-  //   fetchTodos(page, limit)
-  // );
 
   const elements = todos.map((todo) => (
     <li key={todo.id} className="list-group-item list-group-item-action">
