@@ -31,7 +31,7 @@ export default function Lesson22() {
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 22.</h3>
-      <h5 className="text-center">Hook pagination</h5>
+      <h5 className="text-center">Hook pagination with search filter</h5>
       <input
         type="text"
         className="form-control mb-2 w-50"
@@ -43,7 +43,7 @@ export default function Lesson22() {
         style={{ maxHeight: "500px" }}
         ref={parentRef}
       >
-        {loading ? <Loader /> : elements}
+        {loading ? elements : <Loader />}
       </ul>
     </div>
   );
