@@ -19,7 +19,7 @@ function Lesson17() {
   }, []);
   useEffect((_) => {
     apiClient("/users/ybeliaev/repos?sort=created&per_page=7").then((repos) => {
-      console.log("user from useEffect: ", repos);
+      // console.log("user from useEffect: ", repos);
       setRepos(repos);
       setLoading2(false);
     });

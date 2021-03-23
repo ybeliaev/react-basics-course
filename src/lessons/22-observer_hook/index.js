@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import useSearch from "../22-observer_hook/useSearch";
 
 export default function Lesson22() {
@@ -6,13 +6,23 @@ export default function Lesson22() {
   let limit = 10;
   const { todos, loading } = useSearch(limit, page);
   const [querySearch, setQuerySearch] = useState("");
-  const parentRef = useRef();
-  const childRef = useRef();
 
-  function handleSearch(value) {
-    console.log(value);
-    console.log(todos);
-  }
+  const observer = useRef();
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      // if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        // console.log(entries);
+        // if (entries[0].isIntersecting) {
+        //   setPage((prevPage) => prevPage + 1);
+        // }
+      });
+      if (node) observer.current.observe(node);
+      console.log({ node }); // будет элемент на котором lastElementRef
+    },
+    [loading, page]
+  );
 
   const elements = todos
     .filter((val) => {
@@ -22,12 +32,26 @@ export default function Lesson22() {
         return val;
       }
     })
-    .map((todo) => (
-      <li key={todo.id} className="list-group-item list-group-item-action">
-        {todo.id}. {todo.title}
-        <div ref={childRef}></div>
-      </li>
-    ));
+    .map((todo, idx) => {
+      if (todos.length === idx + 1) {
+        return (
+          <li
+            ref={lastElementRef}
+            key={todo.id}
+            className="list-group-item list-group-item-action "
+          >
+            {todo.id}. LAST ELEMENT
+          </li>
+        );
+      } else {
+        return (
+          <li key={todo.id} className="list-group-item list-group-item-action">
+            {todo.id}. {todo.title}
+          </li>
+        );
+      }
+    });
+
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 22.</h3>
@@ -39,11 +63,12 @@ export default function Lesson22() {
         placeholder="search.."
       ></input>
       <ul
+        ref={observer}
         className="list-group w-50 overflow-auto"
         style={{ maxHeight: "500px" }}
-        ref={parentRef}
       >
-        {loading ? elements : <Loader />}
+        {elements}
+        <div>{loading && <Loader />}</div>
       </ul>
     </div>
   );
