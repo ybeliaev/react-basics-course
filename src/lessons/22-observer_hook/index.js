@@ -11,12 +11,13 @@ export default function Lesson22() {
   const lastElementRef = useCallback(
     (node) => {
       if (loading) return;
-      // if (observer.current) observer.current.disconnect();
+      if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         // console.log(entries);
-        // if (entries[0].isIntersecting) {
-        //   setPage((prevPage) => prevPage + 1);
-        // }
+        if (entries[0].isIntersecting) {
+          setPage((prevPage) => prevPage + 1);
+          console.log({ page });
+        }
       });
       if (node) observer.current.observe(node);
       console.log({ node }); // будет элемент на котором lastElementRef
