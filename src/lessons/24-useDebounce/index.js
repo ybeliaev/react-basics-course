@@ -1,8 +1,16 @@
 import React, { useState, useRef } from "react";
+import useDebounce from "./useDebounce";
 
 export default function Lesson24() {
   const [text, setText] = useState("");
   const ref = useRef();
+
+  const debouncedFunction = useDebounce(setText, 500);
+
+  const onChange = (event) => {
+    debouncedFunction(event.target.value);
+  };
+
   return (
     <div className="wrapper_lesson fs-4">
       <h3>Урок 24.</h3>
@@ -10,8 +18,8 @@ export default function Lesson24() {
       <input
         className="form-control w-50 mb-1"
         type="text"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        // value={text} - will not work without it
+        onChange={onChange}
         ref={ref}
       />
       <button
