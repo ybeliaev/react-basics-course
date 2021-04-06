@@ -18,6 +18,7 @@ export default function Lesson24() {
         className="btn btn-dark mb-1"
         onClick={() => {
           setText("");
+          // add focus for input
           ref.current.focus();
         }}
       >
