@@ -24,6 +24,7 @@ import Lesson20 from "./lessons/20-observer _tutorial";
 import Lesson21 from "./lessons/21-manual_hooks";
 // import Lesson22 from "./lessons/22-observer_hook";
 import Lesson23 from "./lessons/23-use_infitite_pagination";
+import Lesson24 from "./lessons/24-useDebounce";
 
 const title = React.createElement(
   "h1",
@@ -61,6 +62,7 @@ function App() {
         <Lesson21 />
         {/* <Lesson22 /> */}
         <Lesson23 />
+        <Lesson24 />
       </div>
     </div>
   );
